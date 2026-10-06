@@ -29,49 +29,51 @@ export const px = (id: number, w = 1200) =>
 /** Best single URL for a photo (used for social previews and <img src>). */
 export const photoUrl = (p: Photo, w = 1200) => (p.src ? `/photos/${p.src}.jpg` : px(p.id!, w));
 
-/** Company project photography (upscaled from the originals supplied). */
+/** Company project photography: the original, unedited photos supplied.
+ * Most originals are small (141x101), so `Img` shows them as framed prints
+ * at close to their real size instead of stretching them. */
 export const OWN = {
   modernHome: {
     src: "home-grey-modern",
     alt: "Completed single-storey home with charcoal-grey plastered walls, black window frames and a gravel forecourt",
-    width: 1128,
-    height: 808,
+    width: 141,
+    height: 101,
   },
   compactHome: {
     src: "home-grey-compact",
     alt: "Completed compact grey family home with a covered front stoop and sliding glass doors",
-    width: 1128,
-    height: 808,
+    width: 141,
+    height: 101,
   },
   homeRender: {
     src: "home-design-render",
     alt: "3D design render of a family home with a split butterfly roof, double garage and landscaped entrance",
-    width: 1128,
-    height: 808,
+    width: 141,
+    height: 101,
   },
   officeBlock: {
     src: "office-block",
     alt: "Multi-storey glass and concrete office block with a stone-clad retaining wall and visitor parking",
-    width: 1128,
-    height: 808,
+    width: 141,
+    height: 101,
   },
   steelCladCommercial: {
     src: "commercial-steel-clad",
     alt: "Steel-clad commercial unit with a glazed double-height reception entrance and marked parking bays",
-    width: 1200,
-    height: 800,
+    width: 858,
+    height: 572,
   },
   steelFrame: {
     src: "steel-frame-warehouse",
     alt: "Structural steel portal frame for a warehouse under construction, with roof purlins in place",
-    width: 1128,
-    height: 808,
+    width: 141,
+    height: 101,
   },
   housingFoundations: {
     src: "housing-foundations",
     alt: "Brick foundation walls for new housing units under construction, with completed double-storey units behind",
-    width: 1128,
-    height: 808,
+    width: 141,
+    height: 101,
   },
 } satisfies Record<string, Photo>;
 

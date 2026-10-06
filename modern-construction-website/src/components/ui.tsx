@@ -55,6 +55,35 @@ export function Img({
   className?: string;
 }) {
   const local = photo.src;
+  // Small originals: never stretch. Blurred ambient backdrop + crisp framed print.
+  if (local && (photo.width ?? 9999) < 400) {
+    const s = `/photos/${local}.jpg`;
+    const w = Math.round((photo.width ?? 141) * 1.5);
+    return (
+      <div className={cn("@container relative h-full w-full overflow-hidden bg-ink", className)}>
+        <img
+          src={s}
+          alt=""
+          aria-hidden="true"
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+          className="absolute inset-0 h-full w-full scale-125 object-cover opacity-50 blur-2xl"
+        />
+        <div className="absolute inset-0 hidden place-items-center p-4 @[280px]:grid">
+          <img
+            src={s}
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
+            loading={priority ? "eager" : "lazy"}
+            decoding="async"
+            style={{ width: `min(${w}px, 70%)` }}
+            className="block h-auto rotate-[-1.5deg] bg-white p-1.5 shadow-[0_12px_30px_rgba(0,0,0,0.45)]"
+          />
+        </div>
+      </div>
+    );
+  }
   const src = local ? `/photos/${local}.jpg` : px(photo.id!, 1200);
   const srcSet = local
     ? `/photos/${local}-640.jpg 640w, /photos/${local}.jpg ${photo.width ?? 1128}w`
